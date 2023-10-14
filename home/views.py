@@ -10,6 +10,7 @@ from home.encrypt_util import *
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -17,7 +18,7 @@ from django.core.exceptions import ValidationError
 def home(request):
     return render(request,"pages/home.html")
 
-
+@csrf_exempt
 def register_page(request):
     form=UserRegisterForm()
     if request.method=="POST":
@@ -29,7 +30,7 @@ def register_page(request):
     context={'form':form}
     return render(request,"pages/register.html",context)
 
-
+@csrf_exempt
 def login_page(request):
     form=LoginForm()
     if request.method=="POST":
@@ -45,6 +46,7 @@ def login_page(request):
     context={"form":form}
     return render(request,"pages/index.html",context)
 
+@csrf_exempt
 @login_required(login_url="login-page")
 def add_new_password(request):
     if not request.user.is_authenticated:
@@ -77,7 +79,7 @@ def add_new_password(request):
 
     return render(request, 'pages/add-password.html')
 
-
+@csrf_exempt
 @login_required(login_url="login-page")
 def manage_passwords(request):
     if not request.user.is_authenticated:
@@ -94,6 +96,7 @@ def manage_passwords(request):
     print(str("this is the password ")+user_passwords[0].password)
     return render(request, 'pages/manage-passwords.html', {'all_passwords': user_passwords, 'sort_order': sort_order})
 
+@csrf_exempt
 @login_required(login_url="login-page")
 def edit_password(request, pk):
     if not request.user.is_authenticated:
@@ -123,7 +126,7 @@ def edit_password(request, pk):
     return render(request, 'pages/edit-password.html', context)
 
 
-
+@csrf_exempt
 def logout_page(request):
     logout(request)
     return redirect("login-page")
