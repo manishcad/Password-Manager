@@ -1,0 +1,1 @@
+web: gunicorn Password_Manager.wsgi --log-file -
