@@ -83,6 +83,10 @@ DATABASES = {
         'PASSWORD': 't56kQIliafRU',
         'HOST': 'ep-polished-poetry-41159184.ap-southeast-1.aws.neon.fl0.io',  # You can specify the database host, usually 'localhost'.
         'PORT': '5432',      # Default PostgreSQL port.
+        'OPTIONS': {
+            'sslmode': 'require',
+            'options': 'endpoint=ep-polished-poetry-41159184',
+        },
     }
 }
 
