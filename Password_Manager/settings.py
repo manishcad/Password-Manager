@@ -128,3 +128,4 @@ STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ENCRYPT_KEY ='Sd4yiA0LyaPgz2qtaLsTC11XpTpHkKccCXVUZMibo-E='
+CSRF_COOKIE_SECURE = False
